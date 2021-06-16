@@ -15,7 +15,7 @@ const [categories, setCategories] = useState(["dragonball", "onepunch", "invinci
     return (
         <>
             <h2>GifExpertApp</h2>
-            <AddCategory />
+            <AddCategory setCategories = {setCategories} />
             <hr/>
             
 
