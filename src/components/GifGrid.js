@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
+import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({category}) => {
 
 
-    const [counter, setCounter] = useState(0);
+    const [images, setImages] = useState([])
 
     useEffect(() => {
         getGifs();
@@ -23,15 +24,24 @@ export const GifGrid = ({category}) => {
         })
 
         console.log(gifs);
+        setImages(gifs);
     }
     // getGifs es llamado ahora dentro de useEffect para que solo se ejecute una vez 
     //getGifs();
 
     return (
         <div>
-            <h3>{category}</h3>
-            <h3>{counter}</h3>
-            <button onClick={()=>setCounter(counter+1)}></button>
+            <h3>{ category }</h3>
+            
+                {
+                    images.map( img => (
+                        <GifGridItem 
+                            key={ img.id }
+                            { ...img }
+                        />
+                    ))
+                }
+            
         </div>
     )
 }
